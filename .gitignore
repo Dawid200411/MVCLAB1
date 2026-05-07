@@ -205,3 +205,24 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Przechowuje wyniki kompilacji (to jest najwa¿niejsze!)
+[Dd]ebug/
+[Rr]elease/
+bin/
+obj/
+
+# Pliki tymczasowe Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Pliki bazy danych LocalDB (jeœli nie chcesz ich w repo)
+*.mdf
+*.ldf
+
+# Pliki publikacji
+publish/
+*.pubxml
