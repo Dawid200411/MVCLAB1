@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dotnet.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Dotnet.Data;
+using MvcMovie.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DotnetContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DotnetContext") ?? throw new InvalidOperationException("Connection string 'DotnetContext' not found.")));
@@ -9,6 +10,11 @@ builder.Services.AddDbContext<DotnetContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
